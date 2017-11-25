@@ -17,7 +17,8 @@ MCPy.IA: 1-D numpy array of two elements [LB, UB]. LB/UB are the lower/upper bou
 <br />
 MCPy.MC: 1-D numpy array of two elements [cv, cc]. cv/cc are the convex underestimator/concave overestimator of the function calculated by McCormick rules.
 <br />
-MCPy.SG: 2-D numpy $n_x \times 2$ matrix
+MCPy.SG: 2-D numpy 
+$n_x \times 2$ matrix
 
 ### References:
 [1] Mitsos, A., B. Chachuat, P.I. Barton, [McCormick-based relaxations of algorithms](http://epubs.siam.org/doi/abs/10.1137/080717341), SIAM Journal on Optimization, 20(2):573-601, 2009
