@@ -1,2 +1,2 @@
 # Generalized_McCormick_Relaxations_Library
-MCPy is a class for automatically calculate convex and concave relaxations according to McCormick relaxations rules.
+MCPy is a python class for automatically calculating the convex and concave relaxations of factorable nonconvex functions according to McCormick relaxation rules.
