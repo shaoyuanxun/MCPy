@@ -8,10 +8,16 @@ Theory and implementation for the global optimization of a wide class of algorit
 
 ### 2. Instruction
 Supported rules so far: +, -, /, \*, sqrt, log, exp, \*\*(restricted to odd and even integer power).
-
+<br />
 Upcoming rules: sin, cos.
 
-There are three instance variables in the class, MCPy.IA, MCPy.MC, MCPy.SG
+There are three instance variables in the class, MCPy.IA, MCPy.MC, MCPy.SG.
+<br />
+MCPy.IA: 1-D numpy array of two elements [LB, UB]. LB/UB are the lower/upper bounds the function calculated by intervarl arithmetic.
+<br />
+MCPy.MC: 1-D numpy array of two elements [cv, cc]. cv/cc are the convex underestimator/concave overestimator of the function calculated by McCormick rules.
+<br />
+MCPy.SG: 2-D numpy $n_x \times 2$ matrix
 
 ### References:
 [1] Mitsos, A., B. Chachuat, P.I. Barton, [McCormick-based relaxations of algorithms](http://epubs.siam.org/doi/abs/10.1137/080717341), SIAM Journal on Optimization, 20(2):573-601, 2009
