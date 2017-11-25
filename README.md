@@ -8,6 +8,7 @@ Theory and implementation for the global optimization of a wide class of algorit
 
 ### 2. Instruction
 Supported rules so far: +, -, /, \*, sqrt, log, exp, \*\*(restricted to odd and even integer power)
+
 Upcoming rules: sin, cos
 
 
