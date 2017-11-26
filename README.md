@@ -7,7 +7,7 @@
 Theory and implementation for the global optimization of a wide class of algorithms is presented via convex/affine relaxations [1]. Similar to the convex\concave relaxation, the subgradient propagation relies on the recursive application of specific rules, which could provide us affine relaxations of McCormick relaxations. This library automatedly implements those theorems based on normal and reverse operator overloading.
 
 ### 2. Instruction
-Supported rules so far: +, -, /, \*, sqrt, log, exp, \*\*(restricted to odd and even integer power).
+Supported rules so far: +, -, /, \*, sqrt, log, exp, \*\*(restricted to integer powers).
 <br />
 Upcoming rules: sin, cos.
 
