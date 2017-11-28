@@ -26,6 +26,9 @@ class MCPy:
         self.SG = SG
         
     def __add__(self, MCPy2):
+        '''
+        overloading addition operator
+        '''
         if type(MCPy2) == MCPy:
             IA = self.IA + MCPy2.IA
             MC = self.MC + MCPy2.MC
@@ -35,27 +38,55 @@ class MCPy:
             return MCPy(self.IA+[MCPy2,MCPy2], self.MC+[MCPy2,MCPy2], self.SG)
     
     def __radd__(self, MCPy2):
+        '''
+        reverse overloading addition operator
+        '''
+        
         if type(MCPy2) != MCPy:
             return self+MCPy2
     
     def __pos__(self):
+        '''
+        overloading pos operator
+        '''
+        
         return self
     
     def __neg__(self):
+        '''
+        overloading neg operator
+        '''
+        
         return self*(-1)
     
     def __sub__(self, MCPy2):
+        '''
+        overloading subtraction operator
+        '''
+        
         if type(MCPy2) == MCPy:
             return self+MCPy2*(-1)
         else:
             return MCPy(self.IA-[MCPy2,MCPy2], self.MC-[MCPy2,MCPy2], self.SG)
         
     def __rsub__(self, MCPy2):
+        '''
+        reverse overloading subtraction operator
+        '''
+        
         if type(MCPy2) != MCPy:
             return self*(-1)+MCPy2
     
     def __pow__(self, power):
+        '''
+        overloading interger power opertor
+        '''
+        
         if power % 2 == 0 and power > 0:
+            """
+            overloading positive even interger power
+            """
+            
             LB = mid(self.IA[0], self.IA[1], 0)**power
             UB = max(self.IA[0]**power, self.IA[1]**power)
             IA = np.array([LB, UB])
@@ -95,8 +126,18 @@ class MCPy:
             return MCPy(IA, MC, SG) 
         
         elif power == -1:
-            if self.IA[0] <= 0:
-                raise ValueError('This power rule does not support nonpositive domains.')
+            '''
+            overloading **(-1)
+            '''
+            
+            if self.IA[0]*self.IA[1] <= 0:
+                raise ValueError('1/x cannot contain domain 0')
+            
+            flag = 0 #positive domain if flag=0; negative domain if flag=1
+            if self.IA[1] <= 0:
+                self = -self
+                flag = 1
+
             values = [1/self.IA[0], 1/self.IA[1]]
             IA = np.array([min(values), max(values)])
                       
@@ -133,19 +174,35 @@ class MCPy:
                 SG_cc = np.zeros((n,1))
             SG = np.asmatrix(np.hstack((SG_cv, SG_cc)))
             
-            return MCPy(IA, MC, SG)                         
+            if flag == 1:
+                self = -self
+                return -MCPy(IA, MC, SG)
+            else:
+                return MCPy(IA, MC, SG)                         
         
         elif power == 1:
+            '''
+            overloading **1
+            '''
             return self
         
-        elif power % 2 == 1 and power > 2:        
+        elif power % 2 == 1 and power > 2:   
+            '''
+            overloading positive odd integer power
+            '''
             return self*self**(power-1)
         
         elif power % 2 == 1 and power < -1:
+            '''
+            overloading negative odd interger power
+            '''
             temp = self**(-1)
             return temp**(-power)
         
         elif power % 2 == 0 and power < -1:
+            '''
+            overloading negative even interger power
+            '''
             temp = self**(-1)
             return temp**(-power)
         
@@ -153,6 +210,10 @@ class MCPy:
             raise ValueError('This power rule is not supported yet.')
             
     def __mul__(self, MCPy2):
+        '''
+        overloading multiplication operator
+        '''
+        
         if type(MCPy2) == MCPy:
             values = [self.IA[0]*MCPy2.IA[0], self.IA[0]*MCPy2.IA[1], self.IA[1]*MCPy2.IA[0], self.IA[1]*MCPy2.IA[1]]
             IA = np.array([min(values), max(values)])
@@ -242,12 +303,21 @@ class MCPy:
             raise ValueError('This rule is not defined yet.')
 
     def __rmul__(self, MCPy2):
+        '''
+        reverse overloading of multiplication operator
+        '''
         return self*MCPy2
             
     def __truediv__(self, MCPy2):
+        '''
+        overloading division operator
+        '''
         return self*MCPy2**(-1)
         
     def __rtruediv__(self, MCPy2):
+        '''
+        reserve overloading division operator
+        '''
         return self**(-1)*MCPy2
 
         
@@ -267,6 +337,10 @@ def mid(a, b ,c):
     return max(a, min(b,c))
 
 def log(self): 
+    '''
+    overloading log 
+    '''
+    
     if type(self) == MCPy:
         IA = np.array([log(self.IA[0]), log(self.IA[1])])
         
@@ -310,6 +384,10 @@ def log(self):
 
 
 def sqrt(self): 
+    '''
+    overloading sqrt
+    '''
+    
     if type(self) == MCPy:
         IA = np.array([math.sqrt(self.IA[0]), math.sqrt(self.IA[1])])
 
@@ -352,6 +430,10 @@ def sqrt(self):
         return math.sqrt(self)
     
 def exp(self):
+    '''
+    overloading exp
+    '''
+    
     if type(self) == MCPy:
         IA = np.array([math.exp(self.IA[0]), math.exp(self.IA[1])])
 
