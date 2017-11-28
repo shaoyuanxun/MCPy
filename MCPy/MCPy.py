@@ -2,8 +2,25 @@ import math
 import numpy as np 
     
 class MCPy:
+    '''
+    MCPy is a python library for automatically calculate convex\concave relaxations and subgradients 
+    of factorable nonconvex functions according to McCormick relaxation rules and interval arithmetic. 
+    '''
  
     def __init__(self, IA, MC, SG):
+        '''
+        Initialization:
+        MCPy.IA
+        1-D numpy array of two elements [LB, UB]. 
+        LB/UB are the lower/upper bound the function calculated by the intervarl arithmetic. 
+        MCPy.MC 
+        1-D numpy array of two elements [cv, cc]. 
+        cv/cc are the convex underestimator/concave overestimator of the function calculated by the McCormick rules. 
+        MCPy.SG 
+        2-D numpy n-by-2 matrix [SG_cv,SG_cc]. 
+        SG_cv/SG_cc are n-by-1 column verctors of subgradients for convex/concave relaxations.
+        '''
+        
         self.IA = IA
         self.MC = MC
         self.SG = SG
