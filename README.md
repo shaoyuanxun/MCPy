@@ -38,3 +38,15 @@ See [convergence](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_wi
 [1] Mitsos, A., B. Chachuat, P.I. Barton, [McCormick-based relaxations of algorithms](http://epubs.siam.org/doi/abs/10.1137/080717341), SIAM Journal on Optimization, 20(2):573-601, 2009
 <br />
 [2] Bompadre, A., A. Mitsos, [Convergence rate of McCormick relaxations](https://link.springer.com/article/10.1007%2Fs10898-011-9685-2), Journal of Global Optimization 52(1):1-28, 2012
+<br />
+[3] Y. Shao and J. K. Scott. [Convex relaxations for global optimization under uncertainty described by continuous random variables](https://arxiv.org/abs/1709.08780), arXiv preprint. 2017.
+
+```
+Citation of our work:
+@Article{Shao:2017,
+  author = {Shao, Y. and Scott, J. K.},
+  title  = {Convex Relaxations for Global Optimization Under Uncertainty Described by Continuous Random Variables (preprint: arXiv:1709.08780)},
+  year   = {2017},
+  url    = {arXiv:1709.08780},
+}
+```
