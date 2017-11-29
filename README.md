@@ -42,7 +42,7 @@ See [convergence](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_wi
 [3] Y. Shao and J. K. Scott. [Convex relaxations for global optimization under uncertainty described by continuous random variables](https://arxiv.org/abs/1709.08780), arXiv preprint. 2017.
 
 ```
-Citation of our work:
+Citation of our recent work:
 @Article{Shao:2017,
   author = {Shao, Y. and Scott, J. K.},
   title  = {Convex Relaxations for Global Optimization Under Uncertainty Described by Continuous Random Variables (preprint: arXiv:1709.08780)},
