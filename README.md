@@ -24,11 +24,11 @@ There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCP
 
 ### 3. Example and Illustration
 (a) Import the MCPy class
-
+<br />
 (b) Initialize the variables
-
+<br />
 (c) Do the calculation
-
+<br />
 See [examples](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/examples.ipynb) file.
 
 ### 4. Convergence
