@@ -23,6 +23,9 @@ There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCP
 <br /> 2-D numpy n-by-2 matrix [**SG_cv**,**SG_cc**]. <br /> **SG_cv**/**SG_cc** are n-by-1 column verctors of subgradients for convex/concave relaxations.
 
 ### 3. Example and Illustration
+(a) Import the MCPy class
+(b) Initialize the variables
+(c) Do the calculation
 See [examples](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/examples.ipynb) file.
 
 ### 4. Convergence
