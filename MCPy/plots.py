@@ -175,3 +175,4 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     
     rot_animation = animation.FuncAnimation(fig, rotate, frames=np.arange(0,360,4),interval=90)
     rot_animation.save(address2)
+    
