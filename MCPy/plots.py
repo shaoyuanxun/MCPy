@@ -175,3 +175,31 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     
     rot_animation = animation.FuncAnimation(fig, rotate, frames=np.arange(0,360,4),interval=90)
     rot_animation.save(address2)
+    
+    
+def convergencePlot(x, fun):
+    '''
+    convergence plot for one-variable functions
+    '''
+    
+    mag = 5
+    eps_points = 10**(-np.linspace(3,2+mag,mag))
+    cv_points = np.zeros(mag)
+    cc_points = np.zeros(mag)
+    delta_points = np.zeros(mag)
+
+    index = 0
+    for eps in eps_points:
+        x_MCPy = MCPy(np.array([x-eps,x+eps]), np.array([x, x]), np.matrix([[1, 1]]))
+        f_MCPy = fun(x_MCPy)
+        cv_points[index] = f_MCPy.MC[0]
+        cc_points[index] = f_MCPy.MC[1]
+        delta_points[index] = f_MCPy.MC[1] - f_MCPy.MC[0]
+        index += 1
+
+    plt.loglog(eps_points, delta_points, color="red") 
+    plt.grid(True,which="both",ls="-")
+    plt.title('log-log scale convergence plot')
+    plt.xlabel('half-width $\epsilon$')
+    plt.ylabel('$f^{cv}(x)-f^{cc}(x)$')
+    plt.show()
