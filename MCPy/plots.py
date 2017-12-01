@@ -7,26 +7,25 @@ from matplotlib import animation
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-def OneVariablePlot(LB, UB, nx, fun): 
+def OneVariablePlot(X, nx, fun): 
     '''
     Description: plot the relaxations and the orginal for one-dimensional equation 
     Input: 
-        LB -- lower bound
-        UB -- upper bound
-        nx -- number of partitions of X
+        X   -- range of x
+        nx  -- number of points of X
         fun -- function
     Output:
         plot for the function and corresponding relaxations
     '''
     
-    x_points = np.linspace(LB,UB,nx)
+    x_points = np.linspace(X[0], X[1], nx)
     cv_points = np.zeros(nx)
     cc_points = np.zeros(nx)
     y_points = np.zeros(nx)
 
     index = 0
     for x in x_points:
-        x_MCPy = MCPy(np.array([LB,UB]), np.array([x, x]), np.matrix([[1, 1]]))
+        x_MCPy = MCPy(np.array(X), np.array([x, x]), np.matrix([[1, 1]]))
         f_MCPy = fun(x_MCPy)
         cv_points[index] = f_MCPy.MC[0]
         cc_points[index] = f_MCPy.MC[1]
@@ -41,12 +40,11 @@ def OneVariablePlot(LB, UB, nx, fun):
     plt.show()
     
 
-def TwoVariablesPlot(LB, UB, n_x1, n_x2, fun, view):  
+def TwoVariablesPlot(X, n_x1, n_x2, fun, view):  
     '''
     Description: plot the relaxations and the orginal for two-dimensional equation 
     Input: 
-        LB   -- lower bounds
-        UB   -- upper bounds
+        X    -- range of x1 and x2
         n_x1 -- number of sampling points of X1
         n_x1 -- number of sampling points of X2
         fun  -- function
@@ -55,8 +53,8 @@ def TwoVariablesPlot(LB, UB, n_x1, n_x2, fun, view):
         plot for the function and corresponding relaxations
     '''
     
-    x1_points = np.linspace(LB[0], UB[0], n_x1)
-    x2_points = np.linspace(LB[1], UB[1], n_x2)
+    x1_points = np.linspace(X[0,0], X[0,1], n_x1)
+    x2_points = np.linspace(X[1,0], X[1,1], n_x2)
 
     cv_points = np.zeros((n_x1, n_x2))
     cc_points = np.zeros((n_x1, n_x2))
@@ -66,8 +64,8 @@ def TwoVariablesPlot(LB, UB, n_x1, n_x2, fun, view):
     index2 = 0
     for x1 in x1_points:
         for x2 in x2_points:
-            x1_MCPy = MCPy(np.array([LB[0],UB[0]]), np.array([x1, x1]), np.matrix([[1, 1], [0, 0]]))
-            x2_MCPy = MCPy(np.array([LB[1],UB[1]]), np.array([x2, x2]), np.matrix([[0, 0], [1, 1]]))
+            x1_MCPy = MCPy(np.array([X[0,0], X[0,1]]), np.array([x1, x1]), np.matrix([[1, 1], [0, 0]]))
+            x2_MCPy = MCPy(np.array([X[1,0], X[1,1]]), np.array([x2, x2]), np.matrix([[0, 0], [1, 1]]))
             f_MCPy = fun(x1_MCPy, x2_MCPy)
             cv_points[index1, index2] = f_MCPy.MC[0]
             cc_points[index1, index2] = f_MCPy.MC[1]
@@ -79,13 +77,13 @@ def TwoVariablesPlot(LB, UB, n_x1, n_x2, fun, view):
     fig = plt.figure(figsize=(8,5))
     ax = fig.gca(projection='3d')
 
-    X, Y = np.meshgrid(x1_points, x2_points)
-    p1 = ax.plot_wireframe(X, Y, y_points.T,  rstride=1, cstride=1, color="black") 
-    p2 = ax.plot_wireframe(X, Y, cv_points.T,  rstride=1, cstride=1, color="red", linestyle="dashed")        
+    XX, YY = np.meshgrid(x1_points, x2_points)
+    p1 = ax.plot_wireframe(XX, YY, y_points.T,  rstride=1, cstride=1, color="black") 
+    p2 = ax.plot_wireframe(XX, YY, cv_points.T,  rstride=1, cstride=1, color="red", linestyle="dashed")        
 
     ax.view_init(view[0], view[1])
-    ax.set_xticks(np.linspace(LB[0], UB[0], 5))                               
-    ax.set_yticks(np.linspace(LB[1], UB[1], 5))                               
+    ax.set_xticks(np.linspace(X[0,0], X[0,1], 5))                               
+    ax.set_yticks(np.linspace(X[1,0], X[1,1], 5))                               
     ax.set_zticks([])
     ax.set_title('convex relaxations')
     ax.legend([p1,p2],['f','convex'])
@@ -93,18 +91,18 @@ def TwoVariablesPlot(LB, UB, n_x1, n_x2, fun, view):
 
     fig = plt.figure(figsize=(8,5))
     ax = fig.gca(projection='3d')
-    p3 = ax.plot_wireframe(X, Y, y_points.T,  rstride=1, cstride=1, color="black") 
-    p4 = ax.plot_wireframe(X, Y, cc_points.T,  rstride=1, cstride=1, color="blue", linestyle="dashed") 
+    p3 = ax.plot_wireframe(XX, YY, y_points.T,  rstride=1, cstride=1, color="black") 
+    p4 = ax.plot_wireframe(XX, YY, cc_points.T,  rstride=1, cstride=1, color="blue", linestyle="dashed") 
     ax.view_init(view[2], view[3])
-    ax.set_xticks(np.linspace(LB[0], UB[0], 5))                               
-    ax.set_yticks(np.linspace(LB[1], UB[1], 5))                               
+    ax.set_xticks(np.linspace(X[0,0], X[0,1], 5))                               
+    ax.set_yticks(np.linspace(X[1,0], X[1,1], 5))                              
     ax.set_zticks([])
     ax.set_title('concave relaxations')
     ax.legend([p3,p4],['f','concave'])
     plt.show()
 
     
-def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
+def animation3D(X, n_x1, n_x2, fun, address1, address2):
     '''
     Description: make mp4 animations 
     Input: 
@@ -123,8 +121,8 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     def rotate(angle):
         ax.view_init(azim=angle)
 
-    x1_points = np.linspace(LB[0], UB[0], n_x1)
-    x2_points = np.linspace(LB[1], UB[1], n_x2)
+    x1_points = np.linspace(X[0,0], X[0,1], n_x1)
+    x2_points = np.linspace(X[1,0], X[1,1], n_x2)
 
     cv_points = np.zeros((n_x1, n_x2))
     cc_points = np.zeros((n_x1, n_x2))
@@ -134,8 +132,8 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     index2 = 0
     for x1 in x1_points:
         for x2 in x2_points:
-            x1_MCPy = MCPy(np.array([LB[0],UB[0]]), np.array([x1, x1]), np.matrix([[1, 1], [0, 0]]))
-            x2_MCPy = MCPy(np.array([LB[1],UB[1]]), np.array([x2, x2]), np.matrix([[0, 0], [1, 1]]))
+            x1_MCPy = MCPy(np.array([X[0,0], X[0,1]]), np.array([x1, x1]), np.matrix([[1, 1], [0, 0]]))
+            x2_MCPy = MCPy(np.array([X[1,0], X[1,1]]), np.array([x2, x2]), np.matrix([[0, 0], [1, 1]]))
             f_MCPy = fun(x1_MCPy, x2_MCPy)
             cv_points[index1, index2] = f_MCPy.MC[0]
             cc_points[index1, index2] = f_MCPy.MC[1]
@@ -147,12 +145,12 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     fig = plt.figure(figsize=(8,5))
     ax = fig.gca(projection='3d')
 
-    X, Y = np.meshgrid(x1_points, x2_points)
-    p1 = ax.plot_wireframe(X, Y, y_points.T,  rstride=1, cstride=1, color="black") 
-    p2 = ax.plot_wireframe(X, Y, cv_points.T,  rstride=1, cstride=1, color="red", linestyle="dashed")             
+    XX, YY = np.meshgrid(x1_points, x2_points)
+    p1 = ax.plot_wireframe(XX, YY, y_points.T,  rstride=1, cstride=1, color="black") 
+    p2 = ax.plot_wireframe(XX, YY, cv_points.T,  rstride=1, cstride=1, color="red", linestyle="dashed")             
 
-    ax.set_xticks(np.linspace(LB[0], UB[0], 5))                               
-    ax.set_yticks(np.linspace(LB[1], UB[1], 5))                               
+    ax.set_xticks(np.linspace(X[0,0], X[0,1], 5))                               
+    ax.set_yticks(np.linspace(X[1,0], X[1,1], 5))                               
     ax.set_zticks([])
     ax.set_title('convex relaxations')
     ax.legend([p1,p2],['f','convex'])
@@ -163,12 +161,11 @@ def animation3D(LB, UB, n_x1, n_x2, fun, address1, address2):
     fig = plt.figure(figsize=(8,5))
     ax = fig.gca(projection='3d')
 
-    X, Y = np.meshgrid(x1_points, x2_points)
-    p1 = ax.plot_wireframe(X, Y, y_points.T,  rstride=1, cstride=1, color="black") 
-    p2 = ax.plot_wireframe(X, Y, cc_points.T,  rstride=1, cstride=1, color="blue", linestyle="dashed")             
+    p1 = ax.plot_wireframe(XX, YY, y_points.T,  rstride=1, cstride=1, color="black") 
+    p2 = ax.plot_wireframe(XX, YY, cc_points.T,  rstride=1, cstride=1, color="blue", linestyle="dashed")             
 
-    ax.set_xticks(np.linspace(LB[0], UB[0], 5))                               
-    ax.set_yticks(np.linspace(LB[1], UB[1], 5))                               
+    ax.set_xticks(np.linspace(X[0,0], X[0,1], 5))                               
+    ax.set_yticks(np.linspace(X[1,0], X[1,1], 5))                               
     ax.set_zticks([])
     ax.set_title('concave relaxations')
     ax.legend([p1,p2],['f','concave'])
