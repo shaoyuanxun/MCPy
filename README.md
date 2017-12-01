@@ -31,7 +31,7 @@ There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCP
 <br />
 See [examples](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/examples.ipynb) file for more details, including the usage, plots, and animations.
 
-### 4. Convergence
+### 4. Convergence [2]
 See [convergence](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/convergence.ipynb) file.
 
 ### References:
