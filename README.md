@@ -14,10 +14,10 @@ Upcoming rules: sin, cos.
 There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCPy.SG**.
 <br />
 **MCPy.IA** 
-<br />1-D numpy array of two elements [LB, UB]. <br />LB/UB are the lower/upper bound the function calculated by the intervarl arithmetic.
+<br />1-D numpy array of two elements [LB, UB]. <br />LB/UB are the lower/upper bound the function calculated by the interval arithmetic.
 <br />
 **MCPy.MC**
-<br />1-D numpy array of two elements [cv, cc]. <br />cv/cc are the convex underestimator/concave overestimator of the function calculated by the McCormick rules.
+<br />1-D numpy array of two elements [cv, cc]. <br />cv/cc are the convex underestimator/concave overestimators of the function calculated by the McCormick rules.
 <br />
 **MCPy.SG**
 <br /> 2-D numpy n-by-2 matrix [**SG_cv**, **SG_cc**]. <br /> **SG_cv**/**SG_cc** are n-by-1 column verctors of subgradients for convex/concave relaxations.
