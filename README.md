@@ -4,7 +4,7 @@
 ### 1. Introduction
 **MCPy** is a python library for automatically calculate convex\concave relaxations and subgradients of factorable nonconvex functions according to McCormick relaxation rules and interval arithmetic. The library could be quite useful for prototyping and testing new global optimization algorithms.
 
-Theory and implementation for the global optimization of a wide class of algorithms is presented via convex/affine relaxations [1]. Similar to the convex\concave relaxation, the subgradient propagation relies on the recursive application of specific rules, which could provide us affine relaxations of McCormick relaxations. This library automatedly implements those theorems based on normal and reverse operator overloading.
+Theory and implementation for the global optimization of a wide class of algorithms is presented via convex/affine relaxations [1]. Similar to the convex/concave relaxation, the subgradient propagation relies on the recursive application of specific rules, which could provide us affine relaxations of McCormick relaxations. This library automatedly implements those theorems based on normal and reverse operator overloading.
 
 ### 2. Instruction
 Supported rules so far: +, -, /, \*, sqrt, log, exp, \*\*(restricted to integer powers).
