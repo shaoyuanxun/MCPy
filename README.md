@@ -1,4 +1,4 @@
-# Generalized_McCormick_Relaxations_Library
+# McCormick_Relaxation_Library_with_Subgradient
 #### Author: Yuanxun Shao, Jingjing Wang
 
 ### 1. Introduction
@@ -20,7 +20,7 @@ There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCP
 <br />1-D numpy array of two elements [cv, cc]. <br />cv/cc are the convex underestimator/concave overestimator of the function calculated by the McCormick rules.
 <br />
 **MCPy.SG**
-<br /> 2-D numpy n-by-2 matrix [**SG_cv**,**SG_cc**]. <br /> **SG_cv**/**SG_cc** are n-by-1 column verctors of subgradients for convex/concave relaxations.
+<br /> 2-D numpy n-by-2 matrix [**SG_cv**, **SG_cc**]. <br /> **SG_cv**/**SG_cc** are n-by-1 column verctors of subgradients for convex/concave relaxations.
 
 ### 3. Example and Illustration
 (a) Import the MCPy class
