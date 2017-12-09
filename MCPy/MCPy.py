@@ -215,80 +215,84 @@ class MCPy:
         '''
         
         if type(MCPy2) == MCPy:
-            values = [self.IA[0]*MCPy2.IA[0], self.IA[0]*MCPy2.IA[1], self.IA[1]*MCPy2.IA[0], self.IA[1]*MCPy2.IA[1]]
-            IA = np.array([min(values), max(values)])
-
-            alpha1 = min(MCPy2.IA[0]*self.MC[0], MCPy2.IA[0]*self.MC[1])
-            alpha2 = min(self.IA[0]*MCPy2.MC[0], self.IA[0]*MCPy2.MC[1])
-            beta1  = min(MCPy2.IA[1]*self.MC[0], MCPy2.IA[1]*self.MC[1])
-            beta2  = min(self.IA[1]*MCPy2.MC[0], self.IA[1]*MCPy2.MC[1])
-            gamma1 = max(MCPy2.IA[0]*self.MC[0], MCPy2.IA[0]*self.MC[1])
-            gamma2 = max(self.IA[1]*MCPy2.MC[0], self.IA[1]*MCPy2.MC[1])
-            delta1 = max(MCPy2.IA[1]*self.MC[0], MCPy2.IA[1]*self.MC[1])
-            delta2 = max(self.IA[0]*MCPy2.MC[0], self.IA[0]*MCPy2.MC[1])
-
-            cv = max(IA[0], max(alpha1+alpha2-self.IA[0]*MCPy2.IA[0], beta1+beta2-self.IA[1]*MCPy2.IA[1]))
-            cc = min(IA[1], min(gamma1+gamma2-self.IA[1]*MCPy2.IA[0], delta1+delta2-self.IA[0]*MCPy2.IA[1]))
-            MC = np.array([cv, cc])
-
-            if MCPy2.IA[0] >= 0:
-                sg_alpha1 = MCPy2.IA[0]*self.SG[:,0]
+            
+            if self == MCPy2:
+                return self**2
             else:
-                sg_alpha1 = MCPy2.IA[0]*self.SG[:,1]
+                values = [self.IA[0]*MCPy2.IA[0], self.IA[0]*MCPy2.IA[1], self.IA[1]*MCPy2.IA[0], self.IA[1]*MCPy2.IA[1]]
+                IA = np.array([min(values), max(values)])
 
-            if self.IA[0] >= 0:
-                sg_alpha2 = self.IA[0]*MCPy2.SG[:,0]
-            else:
-                sg_alpha2 = self.IA[0]*MCPy2.SG[:,1]
+                alpha1 = min(MCPy2.IA[0]*self.MC[0], MCPy2.IA[0]*self.MC[1])
+                alpha2 = min(self.IA[0]*MCPy2.MC[0], self.IA[0]*MCPy2.MC[1])
+                beta1  = min(MCPy2.IA[1]*self.MC[0], MCPy2.IA[1]*self.MC[1])
+                beta2  = min(self.IA[1]*MCPy2.MC[0], self.IA[1]*MCPy2.MC[1])
+                gamma1 = max(MCPy2.IA[0]*self.MC[0], MCPy2.IA[0]*self.MC[1])
+                gamma2 = max(self.IA[1]*MCPy2.MC[0], self.IA[1]*MCPy2.MC[1])
+                delta1 = max(MCPy2.IA[1]*self.MC[0], MCPy2.IA[1]*self.MC[1])
+                delta2 = max(self.IA[0]*MCPy2.MC[0], self.IA[0]*MCPy2.MC[1])
 
-            if MCPy2.IA[1] >= 0:
-                sg_beta1 = MCPy2.IA[1]*self.SG[:,0]
-            else:
-                sg_beta1 = MCPy2.IA[1]*self.SG[:,1]
+                cv = max(IA[0], max(alpha1+alpha2-self.IA[0]*MCPy2.IA[0], beta1+beta2-self.IA[1]*MCPy2.IA[1]))
+                cc = min(IA[1], min(gamma1+gamma2-self.IA[1]*MCPy2.IA[0], delta1+delta2-self.IA[0]*MCPy2.IA[1]))
+                MC = np.array([cv, cc])
 
-            if self.IA[1] >= 0:
-                sg_beta2 = self.IA[1]*MCPy2.SG[:,0]
-            else:
-                sg_beta2 = self.IA[1]*MCPy2.SG[:,1]
+                if MCPy2.IA[0] >= 0:
+                    sg_alpha1 = MCPy2.IA[0]*self.SG[:,0]
+                else:
+                    sg_alpha1 = MCPy2.IA[0]*self.SG[:,1]
 
-            if MCPy2.IA[0] >= 0:
-                sg_gamma1 = MCPy2.IA[0]*self.SG[:,1]
-            else:
-                sg_gamma1 = MCPy2.IA[0]*self.SG[:,0]
+                if self.IA[0] >= 0:
+                    sg_alpha2 = self.IA[0]*MCPy2.SG[:,0]
+                else:
+                    sg_alpha2 = self.IA[0]*MCPy2.SG[:,1]
 
-            if self.IA[1] >= 0:
-                sg_gamma2 = self.IA[1]*MCPy2.SG[:,1]
-            else:
-                sg_gamma2 = self.IA[1]*MCPy2.SG[:,0]
+                if MCPy2.IA[1] >= 0:
+                    sg_beta1 = MCPy2.IA[1]*self.SG[:,0]
+                else:
+                    sg_beta1 = MCPy2.IA[1]*self.SG[:,1]
 
-            if MCPy2.IA[1] >= 0:
-                sg_delta1 = MCPy2.IA[1]*self.SG[:,1]
-            else:
-                sg_delta1 = MCPy2.IA[1]*self.SG[:,0]
+                if self.IA[1] >= 0:
+                    sg_beta2 = self.IA[1]*MCPy2.SG[:,0]
+                else:
+                    sg_beta2 = self.IA[1]*MCPy2.SG[:,1]
 
-            if self.IA[0] >= 0:
-                sg_delta2 = self.IA[0]*MCPy2.SG[:,1]
-            else:
-                sg_delta2 = self.IA[0]*MCPy2.SG[:,0]
+                if MCPy2.IA[0] >= 0:
+                    sg_gamma1 = MCPy2.IA[0]*self.SG[:,1]
+                else:
+                    sg_gamma1 = MCPy2.IA[0]*self.SG[:,0]
 
-            if alpha1+alpha2-self.IA[0]*MCPy2.IA[0] >= beta1+beta2-self.IA[1]*MCPy2.IA[1]:
-                SG_cv = sg_alpha1 + sg_alpha2
-            else:
-                SG_cv = sg_beta1 + sg_beta2
+                if self.IA[1] >= 0:
+                    sg_gamma2 = self.IA[1]*MCPy2.SG[:,1]
+                else:
+                    sg_gamma2 = self.IA[1]*MCPy2.SG[:,0]
 
-            if gamma1+gamma2-self.IA[1]*MCPy2.IA[0] <= delta1+delta2-self.IA[0]*MCPy2.IA[1]:
-                SG_cc = sg_gamma1 + sg_gamma2
-            else:
-                SG_cc = sg_delta1 + sg_delta2
+                if MCPy2.IA[1] >= 0:
+                    sg_delta1 = MCPy2.IA[1]*self.SG[:,1]
+                else:
+                    sg_delta1 = MCPy2.IA[1]*self.SG[:,0]
 
-            n = len(self.SG[:,0])
-            if IA[0] > cv:
-                SG_cv = np.zeros((n,1))
-            elif IA[1] < cc:
-                SG_cc = np.zeros((n,1))
-            SG = np.asmatrix(np.hstack((SG_cv, SG_cc)))
+                if self.IA[0] >= 0:
+                    sg_delta2 = self.IA[0]*MCPy2.SG[:,1]
+                else:
+                    sg_delta2 = self.IA[0]*MCPy2.SG[:,0]
 
-            return MCPy(IA, MC, SG)  
+                if alpha1+alpha2-self.IA[0]*MCPy2.IA[0] >= beta1+beta2-self.IA[1]*MCPy2.IA[1]:
+                    SG_cv = sg_alpha1 + sg_alpha2
+                else:
+                    SG_cv = sg_beta1 + sg_beta2
+
+                if gamma1+gamma2-self.IA[1]*MCPy2.IA[0] <= delta1+delta2-self.IA[0]*MCPy2.IA[1]:
+                    SG_cc = sg_gamma1 + sg_gamma2
+                else:
+                    SG_cc = sg_delta1 + sg_delta2
+
+                n = len(self.SG[:,0])
+                if IA[0] > cv:
+                    SG_cv = np.zeros((n,1))
+                elif IA[1] < cc:
+                    SG_cc = np.zeros((n,1))
+                SG = np.asmatrix(np.hstack((SG_cv, SG_cc)))
+
+                return MCPy(IA, MC, SG)  
         
         elif MCPy2>=0:
             return MCPy(self.IA*MCPy2, self.MC*MCPy2, self.SG*MCPy2)
