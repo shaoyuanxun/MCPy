@@ -1,5 +1,5 @@
 # McCormick_Relaxation_Library_with_Subgradient
-#### Author: Yuanxun Shao, Jingjing Wang
+#### Author: Yuanxun Shao (MCPy and plots), Jingjing Wang (plots)
 
 ### 1. Introduction
 **MCPy** is a python library for automatically calculate convex\concave relaxations and subgradients of factorable nonconvex functions according to McCormick relaxation rules and interval arithmetic. The library could be quite useful for prototyping and testing new global optimization algorithms.

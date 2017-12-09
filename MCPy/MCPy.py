@@ -1,6 +1,9 @@
 import math
 import numpy as np 
-    
+'''
+Author: Yuanxun Shao
+'''
+
 class MCPy:
     '''
     MCPy is a python library for automatically calculate convex\concave relaxations and subgradients 
