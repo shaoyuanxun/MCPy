@@ -31,8 +31,15 @@ There are three instance variables in the class, **MCPy.IA**, **MCPy.MC**, **MCP
 <br />
 See [examples](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/examples.ipynb) file for more details, including the usage, plots, and animations.
 
+#### 3.1 An example of convex and concave relaxation plots.
+
+<img width="673" alt="image" src="https://github.com/user-attachments/assets/ee3f8a19-fced-4ea4-8349-305fa5a3e834" />
+
 ### 4. Convergence [2]
 See [convergence](https://github.com/shaoyuanxun/McCormick_Relaxation_Library_with_Subgradient/blob/master/convergence.ipynb) file.
+
+#### 4.1 A convergence plot example.
+<img width="507" alt="image" src="https://github.com/user-attachments/assets/efc07147-4ea1-42a2-8540-5c3d1306894d" />
 
 ### References:
 [1] Mitsos, A., B. Chachuat, P.I. Barton, [McCormick-based relaxations of algorithms](http://epubs.siam.org/doi/abs/10.1137/080717341), SIAM Journal on Optimization, 20(2):573-601, 2009
